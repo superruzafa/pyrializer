@@ -21,8 +21,7 @@ See [Supported types](#supported-types) below.
 Decoding an object maps a serialized value into a Python object:
 
 ~~~ python
-
-from serializer import decode
+from pyrializer import decode
 
 payload = {
   'name': 'John Doe',
@@ -30,14 +29,14 @@ payload = {
   'job': {
     'name': 'Software Engineer',
     'salary': 24000
-  }},
+  },
   'hobbies': ['fishing', 'skating']
 }
 
 class Job:
   name = str
   role = str
-  salary = float
+  salary = int
 
 class Person:
   name = str
@@ -45,12 +44,12 @@ class Person:
   job = Job
   hobbies = [str]
 
-person = decode(Person, person_payload)
+person = decode(Person, payload)
 
-person.name # "John Doe'
-person.job.salary # 24000
-person.job.role # None
-person.job.hobbies[1] # "skating"
+person.name        # John Doe
+person.job.salary  # 24000
+person.job.role    # None
+person.hobbies[1]  # skating
 ~~~
 
 
